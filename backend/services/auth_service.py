@@ -23,7 +23,7 @@ _ALGORITHM = "HS256"
 _ACCESS_EXPIRE_HOURS = 24
 _REFRESH_EXPIRE_DAYS = 7
 
-_pwd_ctx = CryptContext(schemes=["bcrypt"], deprecated="auto")
+_pwd_ctx = CryptContext(schemes=["sha256_crypt"], deprecated="auto")
 
 # In-memory stores
 _users: dict[str, dict] = {}          # user_id -> user dict
