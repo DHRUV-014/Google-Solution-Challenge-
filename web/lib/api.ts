@@ -141,12 +141,12 @@ export async function analyzeScan(formData: FormData): Promise<ScanResult> {
 export async function analyzeBase64(
   image_base64: string,
   scan_type: ScanType,
-  symptoms: string[] = []
+  symptoms?: Record<string, string>
 ): Promise<AnalysisResult> {
   const res = await fetch(`${API_BASE}/analyze`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ image_base64, scan_type, symptoms }),
+    body: JSON.stringify({ image_base64, scan_type, symptoms: symptoms ?? null }),
   });
   return handleResponse<AnalysisResult>(res);
 }
