@@ -25,7 +25,8 @@ export default function LoginPage() {
     try {
       const res = await login(email, password);
       setToken(res.token);
-      setUser(res.user_profile, res.token);
+      const profile = res.user_profile ?? { user_id: res.user_id, email, name: email, role: 'patient' as const };
+      setUser(profile, res.token);
       router.push('/dashboard');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Invalid credentials');
