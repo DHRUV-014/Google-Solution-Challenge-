@@ -3,10 +3,9 @@ import type { RiskLevel } from '@/types';
 
 interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   risk?: RiskLevel;
-  variant?: 'default' | 'outline';
 }
 
-export function Badge({ risk, variant: _variant = 'default', className, children, ...props }: BadgeProps) {
+export function Badge({ risk, className, children, ...props }: BadgeProps) {
   const riskClasses = risk ? getRiskBgColor(risk) : '';
 
   return (
