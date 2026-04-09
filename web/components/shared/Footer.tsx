@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Activity, Heart, Phone, Github, ExternalLink } from 'lucide-react';
+import { Activity, Heart, Phone, GitFork, ExternalLink } from 'lucide-react';
 
 export default function Footer() {
   return (
