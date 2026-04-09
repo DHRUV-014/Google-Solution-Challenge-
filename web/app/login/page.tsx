@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/Button';
 import { login } from '@/lib/api';
 import { setToken } from '@/lib/auth';
 import { useAppStore } from '@/store';
+import SocialAuthButtons from '@/components/auth/SocialAuthButtons';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -76,6 +77,15 @@ export default function LoginPage() {
               {error}
             </div>
           )}
+
+          {/* Social Sign-in */}
+          <SocialAuthButtons />
+
+          <div className="flex items-center gap-3 my-5">
+            <div className="flex-1 h-px bg-border" />
+            <span className="text-xs text-muted">or continue with email</span>
+            <div className="flex-1 h-px bg-border" />
+          </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
