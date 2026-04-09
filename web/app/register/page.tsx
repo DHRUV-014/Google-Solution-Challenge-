@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Eye, EyeOff, Activity, AlertCircle, User, Stethoscope } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { register } from '@/lib/api';
+import SocialAuthButtons from '@/components/auth/SocialAuthButtons';
 import { setToken } from '@/lib/auth';
 import { useAppStore } from '@/store';
 import type { UserRole } from '@/types';
