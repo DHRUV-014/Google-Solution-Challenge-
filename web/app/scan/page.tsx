@@ -38,10 +38,10 @@ export default function ScanPage() {
       const symptomsPayload = Object.values(symptoms).filter(Boolean).length > 0
         ? symptoms : undefined;
       const res = await analyzeBase64(base64, scanType, symptomsPayload ? [
-        { question: 'Symptoms', answer: symptoms.q1 },
-        { question: 'Duration', answer: symptoms.q2 },
-        { question: 'Pain level', answer: symptoms.q3 },
-      ] : []);
+        symptoms.q1 && `Symptoms: ${symptoms.q1}`,
+        symptoms.q2 && `Duration: ${symptoms.q2}`,
+        symptoms.q3 && `Pain: ${symptoms.q3}`,
+      ].filter(Boolean) as string[] : []);
       clearInterval(timer);
       setResult(res);
     } catch (err) {
