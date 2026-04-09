@@ -11,22 +11,23 @@ const config: Config = {
     extend: {
       colors: {
         background: {
-          primary: '#0A0E1A',
-          secondary: '#111827',
-          card: '#1A2234',
+          primary: 'var(--bg-primary)',
+          secondary: 'var(--bg-secondary)',
+          card: 'var(--bg-card)',
         },
         accent: {
-          DEFAULT: '#3B82F6',
-          hover: '#2563EB',
-          light: '#60A5FA',
+          DEFAULT: 'rgb(var(--accent) / <alpha-value>)',
+          hover: 'rgb(var(--accent-hover) / <alpha-value>)',
+          light: 'rgb(var(--accent-light) / <alpha-value>)',
         },
-        success: '#10B981',
-        warning: '#F59E0B',
-        danger: '#EF4444',
-        muted: '#6B7280',
+        success: 'rgb(var(--success) / <alpha-value>)',
+        warning: 'rgb(var(--warning) / <alpha-value>)',
+        danger: 'rgb(var(--danger) / <alpha-value>)',
+        muted: 'rgb(var(--muted) / <alpha-value>)',
+        foreground: 'rgb(var(--foreground) / <alpha-value>)',
         border: {
-          DEFAULT: '#1F2937',
-          light: '#374151',
+          DEFAULT: 'var(--border)',
+          light: 'var(--border-light)',
         },
       },
       fontFamily: {
