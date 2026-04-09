@@ -156,6 +156,7 @@ export interface DoctorReview {
 }
 
 export interface DoctorQueueItem {
+  id: string;           // same as scan_id, normalized
   scan_id: string;
   patient_id: string;
   scan_type: ScanType;
@@ -163,6 +164,8 @@ export interface DoctorQueueItem {
   confidence: number;
   created_at: string;
   reviewed?: boolean;
+  doctor_recommendation?: string;
+  follow_up_date?: string;
   review?: DoctorReview;
 }
 
