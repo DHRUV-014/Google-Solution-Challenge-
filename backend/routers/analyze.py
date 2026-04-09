@@ -99,6 +99,74 @@ def get_symptom_questions(scan_type: str):
     return {"questions": SYMPTOM_QUESTIONS[scan_type]}
 
 
+class FollowupRequest(BaseModel):
+    scan_type: str
+    selected_symptoms: list[str] = []
+    duration: str = ""
+    pain_level: int = 0
+    risk_factors: list[str] = []
+
+
+@router.post("/symptoms/followup")
+async def get_followup_questions(req: FollowupRequest):
+    """Use Gemini to generate personalised follow-up questions based on patient's symptom profile."""
+    import json
+    import re
+    import os
+    import google.generativeai as genai
+
+    genai.configure(api_key=os.getenv("GEMINI_API_KEY", ""))
+
+    symptoms_str = ", ".join(req.selected_symptoms) if req.selected_symptoms else "none specified"
+    risk_str = ", ".join(req.risk_factors) if req.risk_factors else "none"
+    pain_desc = "no pain" if req.pain_level == 0 else f"pain level {req.pain_level}/10"
+
+    prompt = f"""You are an expert medical screening assistant specialising in early cancer detection in India.
+
+A patient is undergoing a {req.scan_type} cancer screening with the following profile:
+- Symptoms selected: {symptoms_str}
+- Duration: {req.duration or "not specified"}
+- {pain_desc}
+- Risk factors: {risk_str}
+
+Generate exactly 2 highly specific, clinically relevant follow-up questions tailored to THIS patient's exact symptom profile.
+Questions must be:
+- In plain, simple English understandable by rural Indian patients
+- Directly relevant to the symptoms listed above
+- Designed to help a doctor assess urgency and severity
+- Different every time — do not use generic questions
+
+Return ONLY valid JSON with no markdown: {{"questions": ["question 1", "question 2"]}}"""
+
+    try:
+        model = genai.GenerativeModel("gemini-2.5-flash")
+        response = model.generate_content(prompt)
+        text = response.text.strip()
+        match = re.search(r'\{.*\}', text, re.DOTALL)
+        if match:
+            data = json.loads(match.group())
+            if isinstance(data.get("questions"), list) and len(data["questions"]) >= 2:
+                return {"questions": data["questions"][:2]}
+    except Exception as exc:
+        logger.warning("Gemini followup failed: %s", exc)
+
+    # Scan-type specific fallbacks
+    fallbacks = {
+        "oral": [
+            "Have you noticed difficulty opening your mouth or moving your tongue freely?",
+            "Have any of these sores or patches been present for more than 3 weeks without healing?",
+        ],
+        "skin": [
+            "Has the lesion changed in size, shape, or colour in the last 4 weeks?",
+            "Does the area bleed spontaneously or when touched lightly?",
+        ],
+    }
+    return {"questions": fallbacks.get(req.scan_type, [
+        "Have you seen a doctor about these symptoms before?",
+        "Are you currently taking any medications that affect your immune system?",
+    ])}
+
+
 def _error_response(message: str) -> dict:
     """Return a safe error response that never crashes the app."""
     return {
