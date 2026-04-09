@@ -130,7 +130,8 @@ export interface GenerateReportRequest {
 
 // ─── Centres ────────────────────────────────────────────
 export interface Centre {
-  centre_id: string;
+  id?: string;
+  centre_id?: string;
   name: string;
   city: string;
   state: string;
