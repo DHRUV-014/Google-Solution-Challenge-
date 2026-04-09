@@ -46,7 +46,7 @@ export default function DemoSection() {
     setError(null);
     try {
       const base64 = await fileToBase64(file);
-      const res = await analyzeBase64(base64, 'oral', []);
+      const res = await analyzeBase64(base64, 'oral');
       setResult(res);
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Analysis failed';
