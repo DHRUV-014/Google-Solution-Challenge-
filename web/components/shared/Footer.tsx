@@ -52,7 +52,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="text-muted hover:text-white transition-colors inline-flex items-center gap-1"
                 >
-                  <Github className="h-3.5 w-3.5" />
+                  <GitFork className="h-3.5 w-3.5" />
                   GitHub Repository
                   <ExternalLink className="h-3 w-3" />
                 </a>
