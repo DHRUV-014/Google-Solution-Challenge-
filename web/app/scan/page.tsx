@@ -65,7 +65,7 @@ export default function ScanPage() {
           <div className="space-y-5">
             <div className="bg-background-card rounded-2xl border border-border p-6">
               <h2 className="text-sm font-semibold text-white mb-4 uppercase tracking-wide">1. Upload Image</h2>
-              <ImageUploader onFileSelect={setFile} selectedFile={file} />
+              <ImageUploader onImageReady={setFile} onClear={() => setFile(null)} imageFile={file} />
             </div>
             <div className="bg-background-card rounded-2xl border border-border p-6">
               <h2 className="text-sm font-semibold text-white mb-4 uppercase tracking-wide">2. Select Type</h2>
