@@ -31,13 +31,11 @@ export default function ScanPage() {
     try {
       const timer = setInterval(() => {}, 1800);
       const base64 = await fileToBase64(file);
-      const symptomsPayload = Object.values(symptoms).filter(Boolean).length > 0
-        ? symptoms : undefined;
-      const res = await analyzeBase64(base64, scanType, symptomsPayload ? [
-        symptoms.q1 && `Symptoms: ${symptoms.q1}`,
-        symptoms.q2 && `Duration: ${symptoms.q2}`,
-        symptoms.q3 && `Pain: ${symptoms.q3}`,
-      ].filter(Boolean) as string[] : []);
+      const hasSymptoms = Object.values(symptoms).some(Boolean);
+      const symptomsPayload = hasSymptoms
+        ? { symptoms: symptoms.q1, duration: symptoms.q2, pain: symptoms.q3 }
+        : undefined;
+      const res = await analyzeBase64(base64, scanType, symptomsPayload);
       clearInterval(timer);
       setResult(res);
     } catch (err) {
