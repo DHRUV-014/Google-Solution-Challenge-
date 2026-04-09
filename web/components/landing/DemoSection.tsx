@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { analyzeBase64 } from '@/lib/api';
 import { fileToBase64, formatConfidence } from '@/lib/utils';
-import type { AnalysisResult, Language, ScanType } from '@/types';
+import type { AnalysisResult, Language } from '@/types';
 
 const languages: { code: Language; label: string }[] = [
   { code: 'en', label: 'English' },
