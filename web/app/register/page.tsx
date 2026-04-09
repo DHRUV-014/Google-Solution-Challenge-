@@ -74,6 +74,15 @@ export default function RegisterPage() {
             </div>
           )}
 
+          {/* Social Sign-up */}
+          <SocialAuthButtons />
+
+          <div className="flex items-center gap-3 my-5">
+            <div className="flex-1 h-px bg-border" />
+            <span className="text-xs text-muted">or register with email</span>
+            <div className="flex-1 h-px bg-border" />
+          </div>
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="text-sm text-muted block mb-1.5">Full Name</label>
