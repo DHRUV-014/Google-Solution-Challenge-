@@ -101,8 +101,12 @@ export default function ResultCard({ result, language, centres, onNewScan }: Res
         {/* Disclaimer */}
         <div className="rounded-xl bg-warning/5 border border-warning/20 p-3">
           <p className="text-xs text-warning/80">
-            {result.disclaimer ??
-              'This is an AI-assisted screening tool. Results must be confirmed by a qualified healthcare professional. Do not use this as a substitute for medical advice.'}
+            {typeof result.disclaimer === 'object' && result.disclaimer !== null
+              ? (result.disclaimer as Record<string, string>)[language] ??
+                (result.disclaimer as Record<string, string>).en ??
+                'This is an AI-assisted screening tool. Results must be confirmed by a qualified healthcare professional.'
+              : result.disclaimer ??
+                'This is an AI-assisted screening tool. Results must be confirmed by a qualified healthcare professional.'}
           </p>
         </div>
       </div>
