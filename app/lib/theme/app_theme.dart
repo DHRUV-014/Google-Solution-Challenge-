@@ -53,7 +53,7 @@ class AppTheme {
       brightness: Brightness.light,
       useMaterial3: true,
       scaffoldBackgroundColor: AppColors.lightPrimaryBg,
-      colorScheme: ColorScheme.light(
+      colorScheme: const ColorScheme.light(
         primary: accent,
         secondary: AppColors.lightAccentSec,
         surface: AppColors.lightCardBg,
@@ -114,7 +114,7 @@ class AppTheme {
       brightness: Brightness.dark,
       useMaterial3: true,
       scaffoldBackgroundColor: AppColors.darkPrimaryBg,
-      colorScheme: ColorScheme.dark(
+      colorScheme: const ColorScheme.dark(
         primary: accent,
         secondary: AppColors.darkAccentSec,
         surface: AppColors.darkCardBg,

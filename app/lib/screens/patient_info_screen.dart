@@ -101,7 +101,7 @@ class _PatientInfoScreenState extends State<PatientInfoScreen> {
       if (!_formKey.currentState!.validate()) return;
       if (_gender.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(s.patientGender + ' is required')),
+          SnackBar(content: Text('${s.patientGender} is required')),
         );
         return;
       }

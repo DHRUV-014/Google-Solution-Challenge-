@@ -287,7 +287,7 @@ class _ChatCard extends StatelessWidget {
                           color: context.textPrimary,
                           fontSize: 16, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 2),
-                  Text(s.chatWelcome.split('.').first + '.',
+                  Text('${s.chatWelcome.split('.').first}.',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
