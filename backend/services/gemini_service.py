@@ -239,14 +239,18 @@ async def check_image_quality(image_bytes: bytes) -> dict:
             model=_MODEL,
             contents=[_QUALITY_PROMPT, image_part],
         )
-        text = response.text.strip()
-        if text.upper().startswith("GOOD"):
-            return {"quality": "GOOD"}
-        reason = text.split(":", 1)[1].strip() if ":" in text else text
-        return {"quality": "BAD", "reason": reason}
+        try:
+            result = _extract_json(response.text)
+            return result
+        except Exception:
+            text = response.text.strip().upper()
+            if "BAD" in text:
+                reason = response.text.split(":", 1)[-1].strip()[:120]
+                return {"quality": "BAD", "reason": reason}
+            return {"quality": "GOOD", "reason": ""}
     except Exception as exc:
         logger.error("Gemini quality check error: %s — failing open", exc)
-        return {"quality": "GOOD"}
+        return {"quality": "GOOD", "reason": ""}
 
 
 async def analyze_image_with_gemini(
