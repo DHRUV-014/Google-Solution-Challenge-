@@ -281,11 +281,12 @@ async def analyze_image_with_gemini(
             if lang not in result or not result[lang]:
                 result[lang] = _FALLBACK[lang]
         if "action_required" not in result:
-            result["action_required"] = risk_level == "HIGH_RISK"
+            result["action_required"] = risk_level in ("HIGH_RISK", "MEDIUM_RISK")
         if "concern" not in result or not result["concern"]:
             result["concern"] = (
-                "Please visit a doctor soon." if risk_level == "HIGH_RISK"
-                else "Monitor the area and see a doctor if anything changes."
+                "Please visit a government hospital within 1-2 days and show them this report."
+                if risk_level in ("HIGH_RISK", "MEDIUM_RISK")
+                else "Monitor the area and visit a doctor if it changes or grows."
             )
         logger.info("Gemini analysis: scan=%s risk=%s concern=%s",
                     scan_type, risk_level, result["concern"][:60])
