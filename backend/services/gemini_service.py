@@ -128,42 +128,57 @@ Rules:
 - For emergency symptoms (chest pain, difficulty breathing, heavy bleeding) always say "call emergency services immediately"
 """
 
-_QUALITY_PROMPT = (
-    "Is this a clear photo suitable for medical screening? "
-    "Look for: blur, poor lighting, wrong angle, not showing "
-    "mouth/skin properly. Reply only: GOOD or BAD: [reason]"
-)
+_QUALITY_PROMPT = """\
+You are a medical image quality checker. Look at this photo and assess if it is suitable for cancer screening.
+
+Check for these problems:
+- Severe blur or motion blur
+- Very dark or overexposed image
+- Wrong body part (not showing mouth/skin as expected)
+- Photo of a photo or screenshot
+- Unrelated object
+
+Respond ONLY in this exact JSON (no markdown):
+{"quality": "GOOD", "reason": ""}
+or
+{"quality": "BAD", "reason": "one short sentence explaining the problem"}
+"""
 
 _ANALYSIS_PROMPT = """\
-You are a compassionate health guide helping a rural Indian understand their screening result.
-Write like you are talking to a friend who has NO medical education. Use simple, everyday words.
+You are a compassionate AI health guide for rural India. You are looking directly at this {scan_type} scan photo AND the AI model result.
 
-INPUTS:
-- Scan type: {scan_type} scan
-- AI risk assessment: {risk_level} ({confidence}% confidence)
-- What the patient told us:
+WHAT THE AI MODEL FOUND:
+- Risk level: {risk_level} (confidence: {confidence}%)
+- Scan type: {scan_type}
+
+WHAT THE PATIENT TOLD US:
 {symptoms_text}
 
-YOUR TASK: Write a kind, plain-language explanation of what the photo shows and what it means.
+YOUR TASK: Look at the actual image and write a personalised, warm explanation.
+Describe what you actually see in the image (colour, texture, size of any marks).
+Connect it to what the patient reported.
+Tell them exactly what to do next in simple words.
+
+ORAL SCAN — look for: white or red patches, sores, unusual textures, swelling
+SKIN SCAN — look for: irregular borders, multiple colours, raised areas, size relative to surrounding skin
 
 Respond ONLY in this exact JSON (no markdown, no extra text):
 {{
-    "en": "2-3 sentences in plain English. Start with 'Your photo shows...' or 'The area in your photo...'. Mention what the AI noticed, connect it to what they told us, and say one clear thing they should do. No medical words.",
-    "hi": "2-3 सरल वाक्य हिंदी में। शुरुआत करें 'आपकी तस्वीर में...' से। बिल्कुल आसान भाषा, कोई मेडिकल शब्द नहीं। क्या दिखा और क्या करना चाहिए बताएं।",
-    "ta": "2-3 எளிய தமிழ் வாக்கியங்கள். 'உங்கள் படத்தில்...' என தொடங்கவும். எளிய வார்த்தைகளில் என்ன தெரிந்தது மற்றும் என்ன செய்ய வேண்டும் என்று சொல்லவும்.",
-    "te": "2-3 సరళమైన తెలుగు వాక్యాలు. 'మీ ఫోటోలో...' తో ప్రారంభించండి. వైద్య పరిభాష లేకుండా ఏమి కనుగొన్నారు మరియు ఏమి చేయాలో చెప్పండి.",
-    "concern": "One plain-English sentence: the single most important thing this person should do now. Practical and calm. Example: 'Visit your local health centre in the next few days and show them this photo.'",
+    "en": "3 sentences in plain English. Sentence 1: describe what you literally see in the photo (colour, size, location). Sentence 2: connect to their symptoms. Sentence 3: one clear action step.",
+    "hi": "3 सरल हिंदी वाक्य। वाक्य 1: तस्वीर में क्या दिखा (रंग, आकार, जगह)। वाक्य 2: लक्षणों से जोड़ें। वाक्य 3: एक स्पष्ट कदम।",
+    "ta": "3 தமிழ் வாக்கியங்கள். வாக்கியம் 1: படத்தில் என்ன தெரிகிறது. வாக்கியம் 2: அறிகுறிகளுடன் இணைக்கவும். வாக்கியம் 3: ஒரு தெளிவான நடவடிக்கை.",
+    "te": "3 తెలుగు వాక్యాలు. వాక్యం 1: ఫోటోలో ఏమి కనిపిస్తుందో. వాక్యం 2: లక్షణాలతో అనుసంధానించండి. వాక్యం 3: ఒక స్పష్టమైన చర్య.",
+    "concern": "One calm, practical English sentence — the single most important action. E.g. 'Visit your nearest government hospital within 2 days and show them this report.'",
     "action_required": true
 }}
 
-Rules:
-- NEVER say: cancer, tumor, malignant, lesion, biopsy, pathology, oncology, carcinoma
-- Use words like: area, spot, patch, mark, change, tissue
-- LOW_RISK: reassure, say it looks normal but advise monitoring — "Keep an eye on it and see a doctor if it changes"
-- HIGH_RISK: urge doctor visit calmly — "We recommend seeing a doctor soon, within the next 1-2 days"
-- INVALID: explain the photo quality issue simply — "The photo was not clear enough for a proper check"
-- Reference their symptom answers naturally: "Since you mentioned it has been there for X weeks..."
-- action_required: true if HIGH_RISK or symptoms show long duration or severe pain
+Strict rules:
+- NEVER use: cancer, tumor, malignant, lesion, biopsy, pathology, carcinoma, oncology
+- Use instead: area, spot, patch, mark, change, growth, tissue
+- LOW_RISK: reassure warmly, say the area looks mostly normal, advise monitoring — calm tone
+- HIGH_RISK or MEDIUM_RISK: urge doctor visit urgently but calmly — within 1-2 days
+- INVALID: explain photo issue simply, ask them to retake with good lighting
+- action_required = true if HIGH_RISK, MEDIUM_RISK, or symptoms show >1 month duration or severe pain
 """
 
 # ── Fallbacks ──────────────────────────────────────────────────────────────────
