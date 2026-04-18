@@ -14,7 +14,6 @@ Output:
   - ml/models/training_report.json
 """
 import io
-import io
 import json
 import os
 import sys
@@ -25,16 +24,6 @@ os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 os.environ["PYTHONIOENCODING"] = "utf-8"
 
-if sys.platform == "win32":
-    try:
-        sys.stdout.reconfigure(encoding="utf-8")
-        sys.stderr.reconfigure(encoding="utf-8")
-    except Exception:
-        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
-        sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
-os.environ["PYTHONIOENCODING"] = "utf-8"
-
-# Force UTF-8 on stdout/stderr for Windows cp1252 consoles
 if sys.platform == "win32":
     try:
         sys.stdout.reconfigure(encoding="utf-8")
