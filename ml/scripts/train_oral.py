@@ -169,11 +169,11 @@ def train():
     print(f"  Total: {len(all_items)} images")
 
     if len(all_items) < 20:
-        print("❌ Not enough images. Aborting.")
+        print("[ERROR] Not enough images. Aborting.")
         sys.exit(1)
 
     # Verify images
-    print("\n🔎 Verifying images...")
+    print("\n[2/6] Verifying images...")
     valid = [(p, l) for p, l in all_items if verify_image(p)]
     print(f"  Valid: {len(valid)}/{len(all_items)}")
 
