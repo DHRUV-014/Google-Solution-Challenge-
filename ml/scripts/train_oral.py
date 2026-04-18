@@ -325,7 +325,7 @@ def train():
     }
     report_path = MODELS / "training_report.json"
     report_path.write_text(json.dumps(report, indent=2))
-    print(f"\n✅ Training report: {report_path}")
+    print(f"\n[DONE] Training report: {report_path}")
     print(json.dumps(report["test_metrics"], indent=2))
 
     return str(tflite_path), str(labels_path)
