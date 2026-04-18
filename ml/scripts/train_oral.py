@@ -258,7 +258,7 @@ def train():
                    class_weight=class_weight, callbacks=callbacks2)
 
     # ── Evaluate ──────────────────────────────────────────────────────────
-    print("\n📈 Evaluating on test set...")
+    print("\n[6/6] Evaluating on test set...")
     test_metrics = model.evaluate(test_ds, return_dict=True)
     print(f"  Test accuracy:  {test_metrics['accuracy']:.4f}")
     print(f"  Test AUC:       {test_metrics['auc']:.4f}")
