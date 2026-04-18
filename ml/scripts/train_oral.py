@@ -164,7 +164,7 @@ def build_model():
 def train():
     import tensorflow as tf
 
-    print("\n🔍 Collecting images...")
+    print("\n[1/6] Collecting images...")
     all_items = collect_images()
     print(f"  Total: {len(all_items)} images")
 
