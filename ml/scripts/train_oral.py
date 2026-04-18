@@ -291,7 +291,7 @@ def train():
         tflite_path.write_bytes(tflite_model)
         print(f"  Saved INT8 TFLite: {tflite_path} ({len(tflite_model)//1024//1024} MB)")
     except Exception as e:
-        print(f"  ⚠ INT8 failed ({e}), trying float32...")
+        print(f"  [WARN] INT8 failed ({e}), trying float32...")
         converter2 = tf.lite.TFLiteConverter.from_keras_model(model)
         converter2.optimizations = [tf.lite.Optimize.DEFAULT]
         tflite_model = converter2.convert()
