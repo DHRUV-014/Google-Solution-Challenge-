@@ -36,6 +36,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
+        "http://localhost:3001",
         "https://janarogya.health",
         "https://*.vercel.app",
         *_extra_origins,

@@ -1,0 +1,30 @@
+{
+  "timestamp": "2026-04-18 11:35:42",
+  "model": "EfficientNetB3",
+  "num_classes": 2,
+  "labels": {
+    "0": "LOW_RISK",
+    "1": "HIGH_RISK"
+  },
+  "image_size": [
+    224,
+    224
+  ],
+  "dataset": {
+    "train": 955,
+    "val": 204,
+    "test": 207,
+    "low_risk_train": 416,
+    "high_risk_train": 539
+  },
+  "phase1_epochs": 13,
+  "phase2_epochs": 10,
+  "test_metrics": {
+    "accuracy": 0.6667,
+    "auc": 0.7239,
+    "loss": 0.654,
+    "precision": 0.6667,
+    "recall": 0.6667
+  },
+  "best_val_auc": 0.7548
+}

@@ -20,18 +20,27 @@ build/
 .packages
 pubspec.lock
 
-# ML / Data
+# ML / Data (covers both root and ml/ subdirectory)
 data/raw/
 data/processed/
+ml/data/raw/
+ml/data/processed/
 models/*.h5
 models/*.tflite
 models/*.pb
+ml/models/*.h5
+ml/models/*.tflite
+ml/models/*.pb
+ml/models/*.bin
 *.pkl
 *.bin
 
 # Node
 node_modules/
 package-lock.json
+
+# Claude Code
+.claude/
 
 # General
 .DS_Store
