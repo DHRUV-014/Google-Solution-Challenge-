@@ -303,7 +303,7 @@ class _StepUpload extends StatelessWidget {
                     width: 72, height: 72,
                     decoration: BoxDecoration(color: JaColors.surface, borderRadius: BorderRadius.circular(20),
                       boxShadow: JaColors.cardShadow),
-                    child: const Icon(Icons.camera_alt_outlined, color: JaColors.brand, size: 36),
+                    child: Icon(Icons.camera_alt_outlined, color: JaColors.brand, size: 36),
                   ),
                   const SizedBox(height: 14),
                   Text(s.scanTapToTake, style: GoogleFonts.nunito(fontSize: 18, fontWeight: FontWeight.w700, color: JaColors.ink)),
@@ -323,7 +323,7 @@ class _StepUpload extends StatelessWidget {
             label: Text(s.scanChooseGallery),
             style: OutlinedButton.styleFrom(
               foregroundColor: JaColors.brand,
-              side: const BorderSide(color: JaColors.brand, width: 1.5),
+              side: BorderSide(color: JaColors.brand, width: 1.5),
               padding: const EdgeInsets.symmetric(vertical: 14),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
               textStyle: GoogleFonts.notoSans(fontSize: 16, fontWeight: FontWeight.w600),
@@ -339,7 +339,7 @@ class _StepUpload extends StatelessWidget {
         decoration: BoxDecoration(
           color: JaColors.warnSoft,
           borderRadius: BorderRadius.circular(10),
-          border: const Border(left: BorderSide(color: JaColors.warn, width: 4)),
+          border: Border(left: BorderSide(color: JaColors.warn, width: 4)),
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(s.scanTipsTitle, style: GoogleFonts.notoSans(fontSize: 14, fontWeight: FontWeight.w700, color: JaColors.ink)),
@@ -360,7 +360,7 @@ class _StepUpload extends StatelessWidget {
             onPressed: onBack,
             style: OutlinedButton.styleFrom(
               foregroundColor: JaColors.inkSoft,
-              side: const BorderSide(color: JaColors.line, width: 1.5),
+              side: BorderSide(color: JaColors.line, width: 1.5),
               padding: const EdgeInsets.symmetric(vertical: 16),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
               textStyle: GoogleFonts.notoSans(fontSize: 16, fontWeight: FontWeight.w600),

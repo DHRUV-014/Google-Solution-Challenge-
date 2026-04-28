@@ -54,6 +54,19 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.14.4
+
+# Generate Android launcher icons from a single source PNG.
+# Run: dart run flutter_launcher_icons
+# The same command works on macOS, Linux, and Windows.
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/icon/logo.png"
+  min_sdk_android: 23
+  # Adaptive icon (Android 8+): brand-green background + logo as foreground.
+  adaptive_icon_background: "#1F7A5A"
+  adaptive_icon_foreground: "assets/icon/logo.png"
 
 flutter:
   uses-material-design: true

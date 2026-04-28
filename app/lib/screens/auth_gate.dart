@@ -16,7 +16,7 @@ class AuthGate extends StatelessWidget {
       stream: AuthService.instance.authStateChanges,
       builder: (context, snap) {
         if (snap.connectionState == ConnectionState.waiting) {
-          return const Scaffold(
+          return Scaffold(
             backgroundColor: JaColors.bg,
             body: Center(child: CircularProgressIndicator(color: JaColors.brand)),
           );

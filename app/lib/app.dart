@@ -9,12 +9,20 @@ class JanArogyaApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<AppProvider>(); // rebuild on lang change
+    final app = context.watch<AppProvider>();
+
+    // Sync the static JaColors palette to whatever theme is about to render,
+    // so that any widget reading JaColors.foo inside build() picks up the
+    // right colour.
+    final platformBrightness = MediaQuery.platformBrightnessOf(context);
+    AppTheme.applyMode(app.themeMode, platformBrightness);
 
     return MaterialApp(
       title: 'JanArogya',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.get(),
+      theme:     AppTheme.light(),
+      darkTheme: AppTheme.dark(),
+      themeMode: app.themeMode,
       home: const SplashScreen(),
     );
   }

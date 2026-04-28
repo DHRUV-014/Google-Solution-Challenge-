@@ -73,9 +73,9 @@ class _HeroSection extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(24, 40, 24, 40),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: RadialGradient(
-          center: Alignment(-0.8, -0.8),
+          center: const Alignment(-0.8, -0.8),
           radius: 1.2,
           colors: [JaColors.brandSoft, JaColors.bg],
         ),
@@ -90,7 +90,7 @@ class _HeroSection extends StatelessWidget {
               borderRadius: BorderRadius.circular(999),
             ),
             child: Row(mainAxisSize: MainAxisSize.min, children: [
-              const Icon(Icons.favorite, color: JaColors.brand, size: 14),
+              Icon(Icons.favorite, color: JaColors.brand, size: 14),
               const SizedBox(width: 6),
               Text(s.heroBadge,
                   style: GoogleFonts.notoSans(fontSize: 13, fontWeight: FontWeight.w700, color: JaColors.brandDark)),

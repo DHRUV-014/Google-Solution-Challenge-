@@ -409,7 +409,7 @@ class _ConfidenceBar extends StatelessWidget {
             value: confidence,
             minHeight: 8,
             backgroundColor: JaColors.line,
-            valueColor: const AlwaysStoppedAnimation<Color>(JaColors.brand),
+            valueColor: AlwaysStoppedAnimation<Color>(JaColors.brand),
           ),
         ),
       ]),
@@ -537,8 +537,8 @@ class _SymptomsCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 6),
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 2),
+              Padding(
+                padding: const EdgeInsets.only(top: 2),
                 child: Icon(Icons.circle, size: 6, color: JaColors.inkSoft),
               ),
               const SizedBox(width: 8),
@@ -563,7 +563,7 @@ class _DisclaimerBox extends StatelessWidget {
       decoration: BoxDecoration(
         color: JaColors.warnSoft,
         borderRadius: BorderRadius.circular(10),
-        border: const Border(left: BorderSide(color: JaColors.warn, width: 4)),
+        border: Border(left: BorderSide(color: JaColors.warn, width: 4)),
       ),
       child: Text(text,
           style: GoogleFonts.notoSans(
@@ -610,13 +610,13 @@ class _ActionBtn extends StatelessWidget {
           : OutlinedButton.icon(
               onPressed: onTap,
               icon: loading
-                  ? const SizedBox(width: 18, height: 18,
+                  ? SizedBox(width: 18, height: 18,
                       child: CircularProgressIndicator(strokeWidth: 2, color: JaColors.brand))
                   : Icon(icon),
               label: Text(label),
               style: OutlinedButton.styleFrom(
                 foregroundColor: JaColors.brand,
-                side: const BorderSide(color: JaColors.brand, width: 1.5),
+                side: BorderSide(color: JaColors.brand, width: 1.5),
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                 textStyle: GoogleFonts.nunito(fontSize: 17, fontWeight: FontWeight.w700),

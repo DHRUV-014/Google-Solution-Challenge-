@@ -1,0 +1,24 @@
+# Normalise line endings across Mac/Linux/Windows.
+# Without this, Windows clones default to CRLF and Flutter analyzer / pre-commit
+# hooks can break with "no newline at end of file" diffs.
+* text=auto eol=lf
+
+# Binary files — leave as-is.
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.pdf   binary
+*.tflite binary
+*.zip   binary
+*.jar   binary
+*.keystore binary
+
+# Windows batch files keep CRLF.
+*.bat   text eol=crlf
+*.cmd   text eol=crlf
+
+# Shell scripts always LF.
+*.sh    text eol=lf
+gradlew text eol=lf

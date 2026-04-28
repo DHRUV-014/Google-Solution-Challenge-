@@ -33,7 +33,7 @@ class _ClinicsScreenState extends State<ClinicsScreen> {
           Text(s.clinicsTitle, style: GoogleFonts.nunito(fontSize: 22, fontWeight: FontWeight.w800, color: JaColors.ink)),
           Text(s.clinicsSubtitle, style: GoogleFonts.notoSans(fontSize: 12, color: JaColors.inkSoft)),
         ]),
-        bottom: PreferredSize(preferredSize: const Size.fromHeight(1), child: Container(height: 1, color: JaColors.line)),
+        bottom: PreferredSize(preferredSize: Size.fromHeight(1), child: Container(height: 1, color: JaColors.line)),
       ),
       body: Column(children: [
         // Search bar
@@ -43,10 +43,10 @@ class _ClinicsScreenState extends State<ClinicsScreen> {
             controller: _search,
             decoration: InputDecoration(
               hintText: s.clinicsSearchHint,
-              prefixIcon: const Icon(Icons.search, color: JaColors.inkSoft),
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: JaColors.line)),
-              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: JaColors.line)),
-              focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: JaColors.brand, width: 2)),
+              prefixIcon: Icon(Icons.search, color: JaColors.inkSoft),
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: JaColors.line)),
+              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: JaColors.line)),
+              focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: JaColors.brand, width: 2)),
               filled: true, fillColor: JaColors.surface,
               contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
             ),
@@ -68,10 +68,10 @@ class _ClinicsScreenState extends State<ClinicsScreen> {
             Positioned(left: MediaQuery.of(context).size.width * 0.4, top: 70,
               child: _MapPin(label: s.clinicsYouLabel, color: JaColors.accent)),
             // Clinic pins
-            const Positioned(left: 60, top: 40, child: _MapPin(label: '1', color: JaColors.brand)),
-            const Positioned(right: 60, top: 90, child: _MapPin(label: '2', color: JaColors.brand)),
-            const Positioned(right: 30, top: 30, child: _MapPin(label: '3', color: JaColors.brand)),
-            const Positioned(left: 80, bottom: 30, child: _MapPin(label: '4', color: JaColors.brand)),
+            Positioned(left: 60, top: 40, child: _MapPin(label: '1', color: JaColors.brand)),
+            Positioned(right: 60, top: 90, child: _MapPin(label: '2', color: JaColors.brand)),
+            Positioned(right: 30, top: 30, child: _MapPin(label: '3', color: JaColors.brand)),
+            Positioned(left: 80, bottom: 30, child: _MapPin(label: '4', color: JaColors.brand)),
             Positioned(bottom: 12, left: 12,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),

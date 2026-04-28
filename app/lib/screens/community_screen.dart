@@ -75,19 +75,19 @@ class _CommunityScreenState extends State<CommunityScreen> {
             child: Container(height: 1, color: JaColors.line)),
         actions: [
           IconButton(
-            icon: const Icon(Icons.volunteer_activism, color: JaColors.brand),
+            icon: Icon(Icons.volunteer_activism, color: JaColors.brand),
             tooltip: 'Volunteer Dashboard',
             onPressed: () => Navigator.push(
                 context, MaterialPageRoute(builder: (_) => const VolunteerScreen())),
           ),
           IconButton(
-            icon: const Icon(Icons.refresh, color: JaColors.inkSoft),
+            icon: Icon(Icons.refresh, color: JaColors.inkSoft),
             onPressed: _load,
           ),
         ],
       ),
       body: _loading
-          ? const Center(child: CircularProgressIndicator(color: JaColors.brand))
+          ? Center(child: CircularProgressIndicator(color: JaColors.brand))
           : RefreshIndicator(
               color: JaColors.brand,
               onRefresh: _load,
@@ -135,7 +135,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                             TextButton(
                               onPressed: () => Navigator.push(
                                   context, MaterialPageRoute(builder: (_) => const VolunteerScreen())),
-                              child: const Text('Act →', style: TextStyle(color: JaColors.danger, fontWeight: FontWeight.w800)),
+                              child: Text('Act →', style: TextStyle(color: JaColors.danger, fontWeight: FontWeight.w800)),
                             ),
                           ]),
                         ),

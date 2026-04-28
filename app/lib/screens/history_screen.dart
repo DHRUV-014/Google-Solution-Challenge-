@@ -67,7 +67,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh_outlined, color: JaColors.inkSoft),
+            icon: Icon(Icons.refresh_outlined, color: JaColors.inkSoft),
             onPressed: _load,
           ),
         ],
@@ -97,7 +97,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
         // ── Content ────────────────────────────────────────────────────
         if (_loading)
-          const Expanded(child: Center(child: CircularProgressIndicator(color: JaColors.brand)))
+          Expanded(child: Center(child: CircularProgressIndicator(color: JaColors.brand)))
         else if (_filtered.isEmpty)
           Expanded(child: _EmptyState(s: s))
         else
@@ -181,19 +181,20 @@ class _FilterChip extends StatelessWidget {
   final String value;
   final String current;
   final void Function(String) onTap;
-  final Color activeColor;
+  final Color? activeColor;
 
   const _FilterChip({
     required this.label,
     required this.value,
     required this.current,
     required this.onTap,
-    this.activeColor = JaColors.brand,
+    this.activeColor,
   });
 
   @override
   Widget build(BuildContext context) {
     final active = current == value;
+    final activeColor = this.activeColor ?? JaColors.brand;
     return GestureDetector(
       onTap: () => onTap(value),
       child: AnimatedContainer(
@@ -229,7 +230,7 @@ class _EmptyState extends StatelessWidget {
         Container(
           width: 80, height: 80,
           decoration: BoxDecoration(color: JaColors.brandSoft, borderRadius: BorderRadius.circular(20)),
-          child: const Icon(Icons.history_outlined, color: JaColors.brand, size: 40),
+          child: Icon(Icons.history_outlined, color: JaColors.brand, size: 40),
         ),
         const SizedBox(height: 20),
         Text(s.historyEmpty,

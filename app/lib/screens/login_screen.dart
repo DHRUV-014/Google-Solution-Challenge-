@@ -114,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
               // ── Privacy note ────────────────────────────────────────
               Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                const Icon(Icons.lock_outline, size: 14, color: JaColors.inkSoft),
+                Icon(Icons.lock_outline, size: 14, color: JaColors.inkSoft),
                 const SizedBox(width: 6),
                 Expanded(child: Text(
                   s.loginPrivacy,
@@ -159,7 +159,7 @@ class _GoogleButton extends StatelessWidget {
           ),
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             if (busy)
-              const SizedBox(
+              SizedBox(
                 width: 22, height: 22,
                 child: CircularProgressIndicator(strokeWidth: 2.5, color: JaColors.brand),
               )

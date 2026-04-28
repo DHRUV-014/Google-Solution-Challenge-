@@ -63,7 +63,7 @@ class _VolunteerScreenState extends State<VolunteerScreen>
   @override
   Widget build(BuildContext context) {
     if (_checkingVid) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator(color: JaColors.brand)));
+      return Scaffold(body: Center(child: CircularProgressIndicator(color: JaColors.brand)));
     }
 
     return Scaffold(
@@ -125,8 +125,8 @@ class _RegisterViewState extends State<_RegisterView> {
     if (mounted) {
       setState(() { _gpsLoading = false; });
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Location detection requires GPS permission — grant it in device settings and retry.'),
+        SnackBar(
+          content: const Text('Location detection requires GPS permission — grant it in device settings and retry.'),
           backgroundColor: JaColors.inkSoft,
         ),
       );
@@ -308,7 +308,7 @@ class _DashboardViewState extends State<_DashboardView> {
     if (mounted) {
       setState(() => _actionTid = '');
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Task accepted!'), backgroundColor: JaColors.brand),
+        SnackBar(content: Text('Task accepted!'), backgroundColor: JaColors.brand),
       );
     }
   }
@@ -320,14 +320,14 @@ class _DashboardViewState extends State<_DashboardView> {
     if (mounted) {
       setState(() => _actionTid = '');
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Task marked complete! Thank you.'), backgroundColor: JaColors.brand),
+        SnackBar(content: Text('Task marked complete! Thank you.'), backgroundColor: JaColors.brand),
       );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_loading) return const Center(child: CircularProgressIndicator(color: JaColors.brand));
+    if (_loading) return Center(child: CircularProgressIndicator(color: JaColors.brand));
 
     return RefreshIndicator(
       color: JaColors.brand,
@@ -404,7 +404,7 @@ class _NgoViewState extends State<_NgoView> {
 
   @override
   Widget build(BuildContext context) {
-    if (_loading) return const Center(child: CircularProgressIndicator(color: JaColors.brand));
+    if (_loading) return Center(child: CircularProgressIndicator(color: JaColors.brand));
 
     return ListView(
       padding: const EdgeInsets.all(16),
@@ -471,9 +471,9 @@ class _FormField extends StatelessWidget {
           filled: true,
           fillColor: JaColors.surface,
           contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: JaColors.line)),
-          enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: JaColors.line)),
-          focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: JaColors.brand, width: 2)),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: JaColors.line)),
+          enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: JaColors.line)),
+          focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: JaColors.brand, width: 2)),
         ),
         style: GoogleFonts.notoSans(fontSize: 14, color: JaColors.ink),
       ),
